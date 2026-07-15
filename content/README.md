@@ -47,11 +47,18 @@ Dự án xây dựng bộ dữ liệu mở về các dòng tu, tu hội, chủng
 
 ## Cách thêm dòng mới hoặc chỉnh sửa
 
-1. **Tạo thư mục mới** với số thứ tự tiếp theo (kiểm tra chưa trùng).
-2. **Sao chép** toàn bộ file từ `0. temple/` vào thư mục nhánh (ví dụ: `1a. Nam (SDB)/`).
-3. **Điền thông tin** vào từng file theo mẫu có sẵn (xem mô tả từng file bên dưới).
-4. **Cập nhật `README.md`** của thư mục dòng (nếu có thông tin chung về cả gia đình dòng).
-5. **Commit và tạo Pull Request** theo quy trình bên dưới.
+1. **Fork** dự án về tài khoản GitHub của bạn (nếu chưa có), sau đó **clone** về máy tính.
+2. Tạo nhánh mới (branch) với tên gợi nhớ, ví dụ: `them-dong-xyz` hoặc `cap-nhat-dong-abc`.
+3. **Tạo thư mục mới** với tên dòng (không cần đánh số thứ tự). Chỉ cần đảm bảo **tên không trùng** với bất kỳ dòng nào đã có.
+   - Nếu dòng chỉ có một giới (ví dụ chỉ Nam hoặc chỉ Nữ), tạo thư mục con như `a. Nam (XYZ)` hoặc `a. Nữ (XYZ)`.
+   - Nếu dòng có cả hai nhánh Nam và Nữ, tạo hai thư mục con `a. Nam (...)` và `b. Nữ (...)`.
+4. **Sao chép** toàn bộ file từ thư mục `0. temple/` vào thư mục nhánh vừa tạo.
+5. **Điền thông tin** vào từng file theo mẫu có sẵn (xem mô tả từng file bên dưới).
+6. **Cập nhật `README.md`** trong thư mục dòng (nếu có thông tin chung về cả gia đình dòng).
+7. Commit thay đổi và tạo **Pull Request** vào repository gốc, ghi rõ:
+   - Nội dung thay đổi (thêm dòng nào, cập nhật gì).
+   - Nguồn tham khảo (nếu có).
+8. Người duy trì dự án sẽ kiểm tra, **gán số thứ tự** cho dòng (nếu cần) và gộp (merge) khi hợp lệ.
 
 ## Mô tả nội dung các file mẫu
 
@@ -74,18 +81,20 @@ Bài viết giới thiệu toàn diện, bao gồm tất cả nội dung của `
 ### `story.md`
 Chứa các câu chuyện riêng, nhân chứng ơn gọi, lịch sử thú vị... Nếu chưa có, để file trống hoặc ghi `# Đang cập nhật`.
 
-## Quy trình đóng góp
+## Cách thêm dòng mới hoặc chỉnh sửa
 
-1. **Fork** dự án về tài khoản của bạn.
-2. Tạo nhánh mới với tên gợi nhớ: `them-dong-xyz` hoặc `cap-nhat-dong-abc`.
-3. Thực hiện thay đổi (thêm mới, chỉnh sửa file) theo đúng cấu trúc và mẫu quy định.
-   - **Chỉ sử dụng thông tin đã được xác nhận chính thức** (website dòng, văn thư, bề trên). Tránh thông tin không rõ nguồn gốc.
-   - **Không tự ý thay đổi cấu trúc file mẫu** trong `0. temple/`.
-4. Đảm bảo tất cả các trường bắt buộc trong `minimal.md` và `full.md` được điền đầy đủ.
-5. Commit và tạo **Pull Request** vào repository gốc, ghi rõ:
+1. **Fork** dự án về tài khoản GitHub của bạn (nếu chưa có), sau đó **clone** về máy tính.
+2. Tạo nhánh mới (branch) với tên gợi nhớ, ví dụ: `them-dong-xyz` hoặc `cap-nhat-dong-abc`.
+3. **Tạo thư mục mới** với tên dòng (không cần đánh số thứ tự). Chỉ cần đảm bảo **tên không trùng** với bất kỳ dòng nào đã có.
+   - Nếu dòng chỉ có một giới (ví dụ chỉ Nam hoặc chỉ Nữ), tạo thư mục con như `a. Nam (XYZ)` hoặc `a. Nữ (XYZ)`.
+   - Nếu dòng có cả hai nhánh Nam và Nữ, tạo hai thư mục con `a. Nam (...)` và `b. Nữ (...)`.
+4. **Sao chép** toàn bộ file từ thư mục `0. temple/` vào thư mục nhánh vừa tạo.
+5. **Điền thông tin** vào từng file theo mẫu có sẵn (xem mô tả từng file bên dưới).
+6. **Cập nhật `README.md`** trong thư mục dòng (nếu có thông tin chung về cả gia đình dòng).
+7. Commit thay đổi và tạo **Pull Request** vào repository gốc, ghi rõ:
    - Nội dung thay đổi (thêm dòng nào, cập nhật gì).
    - Nguồn tham khảo (nếu có).
-6. Người duyệt sẽ kiểm tra và gộp nếu hợp lệ.
+8. Người duy trì dự án sẽ kiểm tra, **gán số thứ tự** cho dòng (nếu cần) và gộp (merge) khi hợp lệ.
 
 ## Lưu ý quan trọng
 - Tôn trọng **sự thật và bản quyền**: không tự ý thêm thông tin chưa xác minh.
