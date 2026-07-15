@@ -1,102 +1,106 @@
-# Dự án Học Giáo lý & Tra cứu Công giáo Việt Nam
+# Dự án Học Cùng Giêsu
 
-Một nền tảng mở giúp người dùng dễ dàng tiếp cận giáo lý, học về các thánh, tra cứu thông tin các dòng tu và ơn gọi tại Việt Nam – dành cho mọi lứa tuổi.
+Nền tảng mở giúp thiếu nhi và giới trẻ học giáo lý, khám phá các thánh, tra cứu thông tin dòng tu và ơn gọi tại Việt Nam – qua sơ đồ tư duy, video, trò chơi và mạng xã hội “nhà tu”.
+
+## 🌐 Truy cập dự án
+Dự án được triển khai dưới dạng web tĩnh, sử dụng **GitHub Pages**.  
+👉 Xem ngay: [https://[TÊN-TÀI-KHOẢN].github.io/[TÊN-REPO]](https://[TÊN-TÀI-KHOẢN].github.io/[TÊN-REPO])  
+*(Thay `[TÊN-TÀI-KHOẢN]` và `[TÊN-REPO]` bằng tên thật của bạn)*
+
+> Hiện tại dự án chưa có kinh phí mua tên miền riêng, hoàn toàn dựa trên hạ tầng miễn phí của GitHub. Mọi sự đóng góp để phát triển chuyên nghiệp hơn đều được trân trọng.
 
 ## Mục đích
-- Giúp thiếu nhi và người trẻ học giáo lý một cách sinh động qua video, bài viết và sơ đồ tư duy.
-- Cung cấp thông tin về các thánh, đặc biệt là các thánh tử đạo Việt Nam.
-- Hỗ trợ tra cứu các dòng tu, chủng viện, ơn gọi trên khắp Việt Nam.
-- Tạo một mạng xã hội nhỏ ("nhà tu") để chia sẻ bài học, kinh nghiệm sống đạo.
+- Giúp người học tiếp cận giáo lý cách nhẹ nhàng, dễ nhớ, dễ thực hành.
+- Cung cấp thông tin về các thánh, đặc biệt các thánh tử đạo Việt Nam.
+- Hỗ trợ tra cứu nhanh các dòng tu, chủng viện, ơn gọi trên mọi giáo phận.
+- Kết nối cộng đồng đức tin qua mạng xã hội nhỏ.
 
 ## Đối tượng
-- Thiếu nhi, giới trẻ (8 – 25 tuổi), giáo lý viên, cha mẹ.
+- Thiếu nhi, giới trẻ (8 – 25 tuổi), giáo lý viên, phụ huynh.
 - Người đang tìm hiểu ơn gọi linh mục, tu sĩ.
-- Người ngoài Công giáo muốn tìm hiểu về đời sống đức tin.
+- Người ngoài Công giáo muốn biết về đời sống đức tin.
 
 ## Các chức năng chính
+### Bài học
+- Học bằng video, bài viết/hình ảnh.
+- Hiển thị nội dung bằng sơ đồ tư duy.
 
-### 1. Bài học
-- **Học bằng video:** các bài giảng giáo lý, câu chuyện thánh sinh động.
-- **Học bằng bài viết/hình ảnh:** nội dung được biên soạn ngắn gọn, dễ hiểu.
-- **Hiển thị bằng sơ đồ tư duy:** giúp hệ thống kiến thức trực quan.
+### Trò chơi
+- Ôn bài cũ, minigame, xếp chữ, chọn đáp án.
 
-### 2. Trò chơi
-- Ôn bài cũ dưới dạng trắc nghiệm, ghép hình, sắp xếp chữ.
-- Minigame theo chủ đề phụng vụ, các thánh, giáo lý.
-- Xếp chữ, chọn đáp án – giúp ghi nhớ dễ dàng.
+### Tra cứu
+- Tra cứu thông tin dòng tu, chủng viện, ơn gọi tại Việt Nam.
+- Tra cứu các thánh tử đạo Việt Nam.
 
-### 3. Tra cứu
-- **Dòng tu & ơn gọi:** tìm kiếm nhanh thông tin các dòng tu, tu hội, chủng viện đang hoạt động tại Việt Nam (khu vực, điều kiện, liên hệ…).
-- **Các thánh tử đạo Việt Nam:** thông tin chi tiết, tiểu sử, hình ảnh, ngày lễ kính.
-
-### 4. Mạng xã hội "nhà tu"
-- Đăng bài chia sẻ (video/bài viết) của các tu sĩ, giáo lý viên.
-- Kết nối cộng đồng người trẻ Công giáo.
+### Mạng xã hội “nhà tu”
+- Đăng bài học, chia sẻ video/bài viết.
+- Kết nối tu sĩ và giáo dân.
 
 ## Cấu trúc dự án
+Toàn bộ mã nguồn web nằm trực tiếp trong thư mục gốc (root), cùng với thư mục `content/` chứa dữ liệu.
 
 ```
-/home
-├── README.md                   ← Bạn đang đọc
-├── content/                    ← Toàn bộ dữ liệu tĩnh (dòng tu, thánh, bài học)
-│   ├── 0. temple/              ← Các file mẫu dùng để tạo dữ liệu mới
+/
+├── README.md                   ← Hướng dẫn tổng quan dự án
+├── index.html                  ← Trang chủ của web
+| ...                           ← Các file dùng đẻ chạy website
+├── content/                    ← Dữ liệu các dòng tu, câu chuyện, bài học
+│   |── LICENSE                 ← Giấy phép nội dung (CC BY-SA 4.0)
+│   ├── 0. temple/              ← File mẫu (không sửa, không xóa)
 │   │   ├── search.md
 │   │   ├── minimal.md
 │   │   ├── full.md
 │   │   └── story/
-│   ├── Dòng Don Bosco/         ← Mỗi dòng/chủ đề có một thư mục riêng
+│   ├── Dòng Don Bosco/         ← Mỗi dòng có một thư mục riêng
 │   │   ├── a. Nam (SDB)/
 │   │   │   ├── search.md
 │   │   │   ├── minimal.md
 │   │   │   ├── full.md
 │   │   │   └── story/
 │   │   └── b. Nữ (FMA)/
-│   └── ...
-├── web/                        ← Mã nguồn giao diện web (đa thiết bị)
-├── mobile/                     ← (nếu có) Ứng dụng di động
-└── ...
+│   └── ...                     ← Các dòng khác (không cần đánh số)
+└── LICENSE                     ← Giấy phép phần mềm (GPLv3)
 ```
 
-## Hướng dẫn đóng góp dữ liệu (cho phần `content`)
-Nếu bạn muốn thêm hoặc cập nhật thông tin về một dòng tu, chủng viện hay câu chuyện, hãy làm theo các bước sau:
+> **Lưu ý:** Với các dòng mới thêm vào, người đóng góp chỉ cần tạo thư mục trong `content/`, không cần đánh số. Người duy trì sẽ sắp xếp và gán số thứ tự sau.
 
-1. **Fork và Clone** dự án về máy.
+## Hướng dẫn đóng góp dữ liệu (cho `content/`)
+1. **Fork** dự án về tài khoản GitHub của bạn, sau đó **clone** về máy:
    ```bash
    git clone https://github.com/[TÊN-TÀI-KHOẢN-CỦA-BẠN]/[TÊN-REPOSITORY].git
    cd [TÊN-REPOSITORY]
    ```
-2. **Tạo nhánh mới** cho thay đổi của bạn.
+2. Tạo nhánh mới:
    ```bash
    git checkout -b them-dong-xyz
    ```
-3. **Vào thư mục `content/`**, tạo một thư mục mới với tên dòng (không cần đánh số). Nếu dòng có cả nam và nữ, tạo hai thư mục con `a. Nam (...)` và `b. Nữ (...)`. Nếu chỉ có một giới, tạo một thư mục `a. Nam (...)` hoặc `a. Nữ (...)`.
-4. **Sao chép các file mẫu** từ `content/0. temple/` vào thư mục vừa tạo.
-5. **Điền đầy đủ thông tin** vào `search.md`, `minimal.md`, `full.md`, và các câu chuyện trong `story/`.
-6. **Commit và tạo Pull Request**.
+3. Trong thư mục `content/`, tạo thư mục mới với tên dòng (kiểm tra trùng tên).  
+   - Nếu dòng chỉ có một giới: `a. Nam (XYZ)` hoặc `a. Nữ (XYZ)`.  
+   - Nếu dòng có cả hai nhánh: `a. Nam (...)` và `b. Nữ (...)`.
+4. Sao chép **toàn bộ** file mẫu từ `content/0. temple/` vào thư mục nhánh vừa tạo.
+5. Điền thông tin vào `search.md`, `minimal.md`, `full.md`. Với `story/`, có thể thêm câu chuyện thực tế.
+6. Commit và push:
    ```bash
    git add .
    git commit -m "Thêm dòng [Tên dòng]"
    git push origin them-dong-xyz
    ```
-7. Người duy trì sẽ kiểm tra, gán số thứ tự (nếu cần) và merge.
-
-Chi tiết hơn về nội dung từng file và cách viết câu chuyện, mời xem trong `content/0. temple/README.md`.
-
-## Công nghệ & Workflow
-- **Hiển thị:** Trang web responsive, hoạt động trên mọi thiết bị qua trình duyệt.
-- **Tìm kiếm:** Tích hợp tìm kiếm tổng hợp nội dung về các thánh, dòng tu, bài học.
-- **Phát triển:** Frontend (HTML/CSS/JS + framework tùy chọn), Backend (sẽ có sau), dữ liệu lưu dưới dạng Markdown/JSON.
+7. Tạo **Pull Request** về repository gốc, ghi rõ nội dung thay đổi và nguồn tham khảo (nếu có).
+8. Người duy trì sẽ kiểm tra, gán số thứ tự và merge.
 
 ## License
-- **Mã nguồn**: [GNU GPLv3](https://www.gnu.org/licenses/gpl-3.0.html)
-- **Nội dung** (trong thư mục `content/` của dự án): [CC BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/)
-  - Bạn được tự do sử dụng, chỉnh sửa, phân phối, kể cả cho mục đích thương mại (ví dụ: in sách, làm phim giới thiệu,...).
-  - **Bắt buộc:** Mọi tác phẩm phái sinh phải được cấp phép lại dưới cùng CC BY-SA 4.0.
-  - **Ghi công:** Khi sử dụng, bạn cần nêu rõ nguồn gốc: *"Nội dung được đóng góp bởi cộng đồng Dự án ***`Học Cùng Giêsu`*** và các dòng tu liên quan, cấp phép CC BY-SA 4.0."*
+- **Mã nguồn (toàn bộ code trong repo, trừ `content/`)**:  
+  [GNU General Public License v3.0 (GPLv3)](https://www.gnu.org/licenses/gpl-3.0.html)  
+  *Bản quyền © 2026 Dự án Học Cùng Giêsu*
 
-## Liên hệ & Đóng góp
-- Dự án mở, hoan nghênh mọi đóng góp từ cộng đồng Công giáo Việt Nam.
-- Mọi thắc mắc, vui lòng mở Issue trên GitHub hoặc liên hệ [địa chỉ email/người phụ trách].
+- **Nội dung (tất cả file trong `content/`)**:  
+  [Creative Commons Attribution-ShareAlike 4.0 International (CC BY-SA 4.0)](https://creativecommons.org/licenses/by-sa/4.0/)  
+  *Bản quyền © 2026 Cộng đồng Dự án Học Cùng Giêsu và các dòng tu liên quan*  
+  ✅ Được tự do chia sẻ, sửa đổi, sử dụng kể cả cho mục đích thương mại (in sách, tài liệu...).  
+  ❌ **Không được tạo thêm hạn chế** – mọi tác phẩm phái sinh phải tiếp tục dùng đúng giấy phép CC BY-SA 4.0.  
+  📎 **Ghi công:** Khi sử dụng nội dung, bạn cần nêu rõ:  
+  *"Nội dung được đóng góp bởi cộng đồng Dự án Học Cùng Giêsu và các dòng tu liên quan, cấp phép CC BY-SA 4.0."*
 
+---
 
 > *“Lạy Chúa, xin sai con đến với muôn dân.”*
