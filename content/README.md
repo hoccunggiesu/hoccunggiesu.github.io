@@ -1,3 +1,5 @@
+
+
 # Cơ sở dữ liệu các dòng tu & chủng viện tại Việt Nam
 
 Dự án xây dựng bộ dữ liệu mở về các dòng tu, tu hội, chủng viện Công giáo đang hoạt động tại Việt Nam, phục vụ cho việc tra cứu ơn gọi và tìm hiểu thông tin.
@@ -78,9 +80,18 @@ Bài viết giới thiệu toàn diện, bao gồm tất cả nội dung của `
 - Hình ảnh, tư liệu
 - Câu chuyện & nhân chứng (có thể tách riêng sang `story.md` nếu quá dài)
 
-### `story.md`
-Chứa các câu chuyện riêng, nhân chứng ơn gọi, lịch sử thú vị... Nếu chưa có, để file trống hoặc ghi `# Đang cập nhật`.
+### `story/`
+Thư mục chứa các câu chuyện riêng, nhân chứng ơn gọi, lịch sử thú vị... Trong thư mục có sẵn file `README.md` hướng dẫn và các file mẫu minh họa nhiều phong cách viết khác nhau. Khi thêm chuyện mới, chỉ cần copy file mẫu, đổi số thứ tự và điền nội dung. Nếu chưa có câu chuyện nào, có thể giữ nguyên các file mẫu hoặc xóa bớt.
 
+> **Dành cho lập trình viên (Vue.js)**  
+> Dữ liệu trong thư mục này được thiết kế để ứng dụng Vue.js đọc trực tiếp qua HTTP (fetch) và hiển thị bằng thư viện `marked.js` (hoặc tương tự).  
+> - `search.md` → hiển thị trong **thẻ kết quả tìm kiếm** (chỉ vài dòng ngắn).  
+> - `minimal.md` → hiển thị trong **trang thông tin cơ bản** (modal hoặc trang riêng).  
+> - `full.md` → hiển thị trong **trang chi tiết đầy đủ** của dòng/chủng viện.  
+> - `story/` → mỗi file `.md` là một câu chuyện riêng, có thể được hiển thị trong phần "Câu chuyện & Nhân chứng".  
+> 
+> Khi fetch file `.md`, Vue.js sẽ dùng `marked.parse(markdownString)` để chuyển thành HTML và chèn vào template bằng `v-html`.  
+> Cấu trúc thư mục phân cấp theo `tên-dòng/ nhánh (a/b)/` giúp việc tạo đường dẫn URL và điều hướng dễ dàng.
 ## Cách thêm dòng mới hoặc chỉnh sửa
 
 1. **Fork** dự án về tài khoản GitHub của bạn (nếu chưa có), sau đó **clone** về máy tính.
