@@ -21,20 +21,7 @@ Dự án được triển khai dưới dạng web tĩnh, sử dụng **GitHub Pa
 - Người ngoài Công giáo muốn biết về đời sống đức tin.
 
 ## Các chức năng chính
-### Bài học
-- Học bằng video, bài viết/hình ảnh.
-- Hiển thị nội dung bằng sơ đồ tư duy.
-
-### Trò chơi
-- Ôn bài cũ, minigame, xếp chữ, chọn đáp án.
-
-### Tra cứu
-- Tra cứu thông tin dòng tu, chủng viện, ơn gọi tại Việt Nam.
-- Tra cứu các thánh tử đạo Việt Nam.
-
-### Mạng xã hội “nhà tu”
-- Đăng bài học, chia sẻ video/bài viết.
-- Kết nối tu sĩ và giáo dân.
+### Đang phát triển
 
 ## Cấu trúc dự án
 Toàn bộ mã nguồn web nằm trực tiếp trong thư mục gốc (root), cùng với thư mục `content/` chứa dữ liệu.
