@@ -4,7 +4,7 @@ Nền tảng mở giúp thiếu nhi và giới trẻ học giáo lý, khám phá
 
 ## 🌐 Truy cập dự án
 Dự án được triển khai dưới dạng web tĩnh, sử dụng **GitHub Pages**.  
-👉 Xem ngay: [https://[TÊN-TÀI-KHOẢN].github.io/[TÊN-REPO]](https://[TÊN-TÀI-KHOẢN].github.io/[TÊN-REPO])  
+👉 Xem ngay: [https://hoccunggiesu.github.io/](https://hoccunggiesu.github.io/)  
 *(Thay `[TÊN-TÀI-KHOẢN]` và `[TÊN-REPO]` bằng tên thật của bạn)*
 
 > Hiện tại dự án chưa có kinh phí mua tên miền riêng, hoàn toàn dựa trên hạ tầng miễn phí của GitHub. Mọi sự đóng góp để phát triển chuyên nghiệp hơn đều được trân trọng.
