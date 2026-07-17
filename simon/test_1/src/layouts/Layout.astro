@@ -1,0 +1,26 @@
+---
+export interface Props {
+  title?: string;
+}
+const { title = "Học Cùng Giêsu" } = Astro.props;
+---
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{title}</title>
+</head>
+<body>
+  <!-- Header luôn xuất hiện ở đầu -->
+  <slot name="header" />
+
+  <!-- Nội dung chính -->
+  <main>
+    <slot />
+  </main>
+
+  <!-- Footer luôn xuất hiện ở cuối -->
+  <slot name="footer" />
+</body>
+</html>
