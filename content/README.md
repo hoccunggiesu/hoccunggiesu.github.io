@@ -2,113 +2,211 @@
 
 # Cơ sở dữ liệu các dòng tu & chủng viện tại Việt Nam
 
-Dự án xây dựng bộ dữ liệu mở về các dòng tu, tu hội, chủng viện Công giáo đang hoạt động tại Việt Nam, phục vụ cho việc tra cứu ơn gọi và tìm hiểu thông tin.
+[![License: CC BY-SA 4.0](https://img.shields.io/badge/License-CC%20BY--SA%204.0-lightgrey.svg)](./LICENSE)
 
-## Cấu trúc thư mục
+Thư mục này chưa **bộ dữ liệu mở** về các dòng tu, tu hội, tu đoàn và cơ sở đào tạo Công giáo đang hoạt động tại Việt Nam. Mục tiêu: phục vụ tra cứu ơn gọi, tìm hiểu thông tin, và kết nối cộng đồng đức tin.
+
+## 🗂️ Cấu trúc thư mục
+
+Dữ liệu được tổ chức phân cấp theo **loại hình đời sống thánh hiến**:
 
 ```
-/
-├── README.md                        ← Hướng dẫn đóng góp (bạn đang đọc)
-├── 0. temple/                       ← Chứa file mẫu cho từng loại
-│   ├── search.md
-│   ├── minimal.md
-│   ├── full.md
-│   └── story.md
-├── 1. Dòng Don Bosco/
-│   ├── README.md                    ← Giới thiệu chung gia đình Don Bosco
-│   ├── 1a. Nam (SDB)/
-│   │   ├── search.md
-│   │   ├── minimal.md
-│   │   ├── full.md
-│   │   └── story.md
-│   └── 1b. Nữ (FMA)/
-│       ├── search.md
-│       ├── minimal.md
-│       ├── full.md
-│       └── story.md
-├── 2. Dòng Đa Minh/
-│   ├── README.md
-│   ├── 2a. Nam (OP)/
-│   │   └── ...
-│   └── 2b. Nữ (các nhánh)/
+content/
+├── 0. temple/                          # MẪU CHUẨN - KHÔNG SỬA, KHÔNG XÓA
+│   ├── search.md                       # Dùng cho thẻ tìm kiếm (ngắn gọn)
+│   ├── minimal.md                      # Thông tin cơ bản
+│   ├── full.md                         # Giới thiệu chi tiết
+│   └── story/                          # Câu chuyện, nhân chứng
+│       ├── README.md
 │       └── ...
-└── ... (các dòng khác đánh số tiếp theo)
+│
+├── dong/                               # CÁC DÒNG TU (nam & nữ)
+│   ├── Don Bosco/
+│   │   ├── README.md                   # Giới thiệu chung gia đình Don Bosco
+│   │   ├── Nam (SDB)/
+│   │   │   ├── search.md
+│   │   │   ├── minimal.md
+│   │   │   ├── full.md
+│   │   │   └── story/
+│   │   └── Nữ (FMA)/
+│   │       ├── search.md
+│   │       ├── minimal.md
+│   │       ├── full.md
+│   │       └── story/
+│   │
+│   ├── Dòng Tên (SJ)/
+│   │   └── Nam/
+│   │       ├── search.md
+│   │       ├── minimal.md
+│   │       ├── full.md
+│   │       └── story/
+│   │
+│   └── ... (các dòng khác)
+│
+├── dong-chiem-niem/                    # ĐAN VIỆN, ẨN TU (chiêm niệm)
+│   ├── Đan viện Châu Sơn/
+│   │   └── Nữ/
+│   │       ├── search.md
+│   │       ├── minimal.md
+│   │       ├── full.md
+│   │       └── story/
+│   └── ...
+│
+├── tu-hoi-doi/                         # TU HỘI ĐỜI (Secular Institutes)
+│   ├── Tu hội Đời Đức Mẹ/
+│   │   └── (có thể có Nam/Nữ hoặc chung)
+│   │       ├── search.md
+│   │       ├── minimal.md
+│   │       ├── full.md
+│   │       └── story/
+│   └── ...
+│
+├── tu-doan-tong-do/                    # TU ĐOÀN TÔNG ĐỒ
+│   └── ...
+│
+└── hiep-hoi-thanh-hien/                # HIỆP HỘI ĐỜI SỐNG THÁNH HIẾN
+    └── ...
 ```
 
-### Giải thích:
-- **`0. temple/`**: chứa các file mẫu trống cho `search.md`, `minimal.md`, `full.md`, `story.md`. **KHÔNG xóa hay sửa thư mục này.**
-- **Mỗi dòng tu** có một thư mục riêng, đặt tên theo định dạng `[Số thứ tự]. [Tên dòng]`, ví dụ: `1. Dòng Don Bosco`.
-- **Trong mỗi thư mục dòng**:
-  - Nếu dòng **chỉ có một giới** (ví dụ: chỉ Nam hoặc chỉ Nữ): tạo duy nhất một thư mục con `1a. Nam (XYZ)` hoặc `1a. Nữ (XYZ)`.
-  - Nếu dòng **có cả hai nhánh**: tạo cả `1a. Nam (...)` và `1b. Nữ (...)`.
-- **Trong mỗi nhánh** (Nam hoặc Nữ) có **4 file**:
-  - `search.md`: Dữ liệu hiển thị trên thẻ tìm kiếm (ngắn gọn).
-  - `minimal.md`: Thông tin cơ bản (định danh, điều kiện, liên hệ).
-  - `full.md`: Bài giới thiệu chi tiết (lịch sử, đào tạo, sinh hoạt...).
-  - `story.md`: Câu chuyện, nhân chứng (có thể để trống nếu chưa có, hoặc gộp vào `full.md`).
+## 📌 Giải thích chi tiết
 
-## Cách thêm dòng mới hoặc chỉnh sửa
+### 1️⃣ `0. temple/` – Thư mục mẫu
+- Chứa **file mẫu** để sao chép khi tạo dòng mới.
+- **KHÔNG được sửa, xóa, hay đổi tên** bất kỳ file nào trong này.
 
-1. **Fork** dự án về tài khoản GitHub của bạn (nếu chưa có), sau đó **clone** về máy tính.
-2. Tạo nhánh mới (branch) với tên gợi nhớ, ví dụ: `them-dong-xyz` hoặc `cap-nhat-dong-abc`.
-3. **Tạo thư mục mới** với tên dòng (không cần đánh số thứ tự). Chỉ cần đảm bảo **tên không trùng** với bất kỳ dòng nào đã có.
-   - Nếu dòng chỉ có một giới (ví dụ chỉ Nam hoặc chỉ Nữ), tạo thư mục con như `a. Nam (XYZ)` hoặc `a. Nữ (XYZ)`.
-   - Nếu dòng có cả hai nhánh Nam và Nữ, tạo hai thư mục con `a. Nam (...)` và `b. Nữ (...)`.
-4. **Sao chép** toàn bộ file từ thư mục `0. temple/` vào thư mục nhánh vừa tạo.
-5. **Điền thông tin** vào từng file theo mẫu có sẵn (xem mô tả từng file bên dưới).
-6. **Cập nhật `README.md`** trong thư mục dòng (nếu có thông tin chung về cả gia đình dòng).
-7. Commit thay đổi và tạo **Pull Request** vào repository gốc, ghi rõ:
-   - Nội dung thay đổi (thêm dòng nào, cập nhật gì).
-   - Nguồn tham khảo (nếu có).
-8. Người duy trì dự án sẽ kiểm tra, **gán số thứ tự** cho dòng (nếu cần) và gộp (merge) khi hợp lệ.
+### 2️⃣ `dong/` – Các dòng tu
+- Dành cho các **dòng tu nam và nữ** theo luật giáo luật.
+- Có thể có cả nhánh **Nam** và **Nữ** (ví dụ: Don Bosco), hoặc chỉ một nhánh.
+- Tên thư mục con: `Tên dòng (Mã viết tắt)`.
 
-## Mô tả nội dung các file mẫu
+### 3️⃣ `dong-chiem-niem/` – Đan viện, ẩn tu
+- Các dòng sống **chiêm niệm**, ít ra khỏi đan viện.
+- Ví dụ: Đan viện Xitô, Đan viện Biển Đức.
 
-Tất cả file mẫu nằm trong `0. temple/`. Khi sao chép, chỉ việc điền thông tin thực tế của dòng vào chỗ trống hoặc thay thế ghi chú trong ngoặc `( )`.
+### 4️⃣ `tu-hoi-doi/` – Tu hội đời
+- Các thành viên **không sống cộng đoàn**, nhưng vẫn tuyên khấn.
+- Sống "giữa đời" như giáo dân.
 
-### `search.md`
-Thẻ hiển thị ngắn gọn khi người dùng tìm kiếm. Chỉ gồm 5-6 dòng thiết yếu, không có thông tin liên hệ cá nhân.
+### 5️⃣ `tu-doan-tong-do/` – Tu đoàn tông đồ
+- Các thành viên sống chung nhưng **không tuyên khấn dòng tu**.
+- Tập trung vào một sứ vụ tông đồ cụ thể.
 
-### `minimal.md`
-Thông tin cơ bản phục vụ tra cứu nhanh và làm dữ liệu nguồn cho bộ lọc. Bao gồm: định danh, đặc sủng, sứ mạng, khu vực hiện diện, điều kiện dự tu, liên hệ chính.
+### 6️⃣ `hiep-hoi-thanh-hien/` – Hiệp hội đời sống thánh hiến
+- Các hiệp hội được Giáo hội công nhận.
 
-### `full.md`
-Bài viết giới thiệu toàn diện, bao gồm tất cả nội dung của `minimal.md` và mở rộng thêm:
-- Lịch sử hình thành và phát triển
-- Đời sống cộng đoàn (một ngày điển hình, trang phục, bầu khí)
-- Hành trình ơn gọi và các giai đoạn đào tạo chi tiết
-- Hình ảnh, tư liệu
-- Câu chuyện & nhân chứng (có thể tách riêng sang `story.md` nếu quá dài)
+---
 
-### `story/`
-Thư mục chứa các câu chuyện riêng, nhân chứng ơn gọi, lịch sử thú vị... Trong thư mục có sẵn file `README.md` hướng dẫn và các file mẫu minh họa nhiều phong cách viết khác nhau. Khi thêm chuyện mới, chỉ cần copy file mẫu, đổi số thứ tự và điền nội dung. Nếu chưa có câu chuyện nào, có thể giữ nguyên các file mẫu hoặc xóa bớt.
+## 🛠️ Cách thêm dòng mới hoặc chỉnh sửa
 
-> **Dành cho lập trình viên (Vue.js)**  
-> Dữ liệu trong thư mục này được thiết kế để ứng dụng Vue.js đọc trực tiếp qua HTTP (fetch) và hiển thị bằng thư viện `marked.js` (hoặc tương tự).  
-> - `search.md` → hiển thị trong **thẻ kết quả tìm kiếm** (chỉ vài dòng ngắn).  
-> - `minimal.md` → hiển thị trong **trang thông tin cơ bản** (modal hoặc trang riêng).  
-> - `full.md` → hiển thị trong **trang chi tiết đầy đủ** của dòng/chủng viện.  
-> - `story/` → mỗi file `.md` là một câu chuyện riêng, có thể được hiển thị trong phần "Câu chuyện & Nhân chứng".  
-> 
-> Khi fetch file `.md`, Vue.js sẽ dùng `marked.parse(markdownString)` để chuyển thành HTML và chèn vào template bằng `v-html`.  
-> Cấu trúc thư mục phân cấp theo `tên-dòng/ nhánh (a/b)/` giúp việc tạo đường dẫn URL và điều hướng dễ dàng.
-## Cách thêm dòng mới hoặc chỉnh sửa
+### 🔹 1. Fork & Clone
+```bash
+git fork https://github.com/hoccunggiesu/hoccunggiesu.github.io
+git clone https://github.com/your-username/hoccunggiesu.github.io
+cd hoccunggiesu.github.io
+```
 
-1. **Fork** dự án về tài khoản GitHub của bạn (nếu chưa có), sau đó **clone** về máy tính.
-2. Tạo nhánh mới (branch) với tên gợi nhớ, ví dụ: `them-dong-xyz` hoặc `cap-nhat-dong-abc`.
-3. **Tạo thư mục mới** với tên dòng (không cần đánh số thứ tự). Chỉ cần đảm bảo **tên không trùng** với bất kỳ dòng nào đã có.
-   - Nếu dòng chỉ có một giới (ví dụ chỉ Nam hoặc chỉ Nữ), tạo thư mục con như `a. Nam (XYZ)` hoặc `a. Nữ (XYZ)`.
-   - Nếu dòng có cả hai nhánh Nam và Nữ, tạo hai thư mục con `a. Nam (...)` và `b. Nữ (...)`.
-4. **Sao chép** toàn bộ file từ thư mục `0. temple/` vào thư mục nhánh vừa tạo.
-5. **Điền thông tin** vào từng file theo mẫu có sẵn (xem mô tả từng file bên dưới).
-6. **Cập nhật `README.md`** trong thư mục dòng (nếu có thông tin chung về cả gia đình dòng).
-7. Commit thay đổi và tạo **Pull Request** vào repository gốc, ghi rõ:
-   - Nội dung thay đổi (thêm dòng nào, cập nhật gì).
-   - Nguồn tham khảo (nếu có).
-8. Người duy trì dự án sẽ kiểm tra, **gán số thứ tự** cho dòng (nếu cần) và gộp (merge) khi hợp lệ.
+### 🔹 2. Tạo branch mới
+```bash
+git checkout -b them-dong-xyz
+```
 
+### 🔹 3. Tạo thư mục cho dòng mới
+- Xác định **loại hình** (dòng tu, tu hội đời, v.v.) → chọn thư mục gốc phù hợp.
+- Tạo thư mục với tên dòng (không cần đánh số thứ tự).
+- **Nếu dòng có cả nam và nữ**:
+  ```
+  Tên Dòng/
+  ├── Nam (Mã)/
+  │   ├── search.md
+  │   ├── minimal.md
+  │   ├── full.md
+  │   └── story/
+  └── Nữ (Mã)/
+      ├── search.md
+      ├── minimal.md
+      ├── full.md
+      └── story/
+  ```
+- **Nếu dòng chỉ có một giới**:
+  ```
+  Tên Dòng/
+  └── Nam (Mã)/ (hoặc Nữ (Mã))
+      ├── search.md
+      ├── minimal.md
+      ├── full.md
+      └── story/
+  ```
+
+### 🔹 4. Sao chép file mẫu
+```bash
+cp -r content/0.temple/* content/dong/Ten-Dong/Nam-Ma/
+```
+
+### 🔹 5. Điền nội dung
+- `search.md`: 5-6 dòng ngắn gọn (tìm kiếm)
+- `minimal.md`: Thông tin cơ bản (định danh, liên hệ, điều kiện)
+- `full.md`: Giới thiệu chi tiết (lịch sử, đào tạo, sinh hoạt)
+- `story/`: Câu chuyện, nhân chứng (nếu có)
+
+### 🔹 6. Tạo Pull Request
+```bash
+git add .
+git commit -m "Thêm dòng XYZ"
+git push origin them-dong-xyz
+```
+Mở Pull Request trên GitHub, ghi rõ:
+- Nội dung thay đổi.
+- Nguồn tham khảo (nếu có).
+
+---
+
+## 📄 Mô tả nội dung các file
+
+| File | Mục đích | Độ dài |
+|------|----------|--------|
+| **`search.md`** | Hiển thị trong thẻ kết quả tìm kiếm | 5-6 dòng |
+| **`minimal.md`** | Thông tin cơ bản, tra cứu nhanh | 1-2 trang |
+| **`full.md`** | Giới thiệu toàn diện, chi tiết | 3-5 trang |
+| **`story/`** | Câu chuyện, nhân chứng ơn gọi | Mỗi file 1-2 trang |
+
+---
+
+## 💻 Dành cho lập trình viên (Vue.js / VitePress)
+
+Cấu trúc thư mục được thiết kế để dễ dàng đọc qua HTTP và hiển thị:
+
+- `search.md` → Hiển thị trong **kết quả tìm kiếm**.
+- `minimal.md` → Hiển thị trong **trang thông tin cơ bản**.
+- `full.md` → Hiển thị trong **trang chi tiết đầy đủ**.
+- `story/*.md` → Hiển thị trong **mục "Câu chuyện & Nhân chứng"**.
+
+Với **VitePress** (hoặc Vue.js + `marked.js`):
+```javascript
+import { marked } from 'marked'
+const html = marked.parse(markdownString)
+```
+
+**Lưu ý:**
+- Thư mục `content/` được thiết kế để **framework-agnostic** – có thể dùng với bất kỳ công cụ SSG nào (VitePress, Astro, Nuxt Content, v.v.).
+- Nếu dùng **VitePress**, cấu hình `srcDir: '../content'` để đọc trực tiếp.
 ## Lưu ý quan trọng
 - Tôn trọng **sự thật và bản quyền**: không tự ý thêm thông tin chưa xác minh.
 - Giữ nguyên các trường quan trọng như `Gia đình linh đạo`, `Loại hình`, `Khu vực` để đảm bảo tính nhất quán cho bộ lọc dữ liệu.
 - Khi một dòng có thay đổi (bề trên mới, địa chỉ mới...), vui lòng **cập nhật cả ba file** (`search.md`, `minimal.md`, `full.md`) nếu thông tin đó xuất hiện trong cả ba.
-- Nếu có thắc mắc, vui lòng mở Issue trên GitHub hoặc liên hệ người phụ trách chính: [Tên + Email / SĐT nếu bạn muốn].
+- Nếu có thắc mắc, vui lòng mở Issue trên GitHub hoặc liên hệ người phụ trách chính: [Tên + Email / SĐT nếu bạn muốn].---
+
+## 🙏 Đóng góp và hỗ trợ
+
+- **Báo lỗi / Đề xuất:** Mở [Issue](https://github.com/hoccunggiesu/hoccunggiesu.github.io/issues)
+- **Đóng góp nội dung:** Fork → Pull Request
+- **Liên hệ:** [Tên + Email / SĐT]
+
+## 📜 Giấy phép
+
+- **Nội dung:** [Creative Commons BY-SA 4.0](./LICENSE)
+
+---
+**Xin cảm ơn tất cả những ai đã đóng góp và đồng hành cùng dự án!**
+
+_Hãy cùng xây dựng kho tri thức cho thế hệ tương lai!_ 🙏✨
+
