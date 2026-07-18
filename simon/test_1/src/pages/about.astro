@@ -1,13 +1,35 @@
 ---
 import Layout from '../layouts/Layout.astro';
-import Header from '../components/layouts/Header.astro';
-import Footer from '../components/layouts/Footer.astro';
+
+// Read license file content
+import fs from 'node:fs';
+import path from 'node:path';
+
+const licensePath = path.join(process.cwd(), 'content', 'LICENSE');
+let licenseContent = 'Đang tải giấy phép...';
+try {
+  licenseContent = fs.readFileSync(licensePath, 'utf-8');
+} catch (e) {
+  console.error("Could not read license file", e);
+}
 ---
 
-<Layout title="Giới thiệu - Học Cùng Giêsu">
-  <Header slot="header" />
-  <h1>Chào mừng đến với Học Cùng Giêsu</h1>
-  <p>Đây là trang chủ.</p>
-  <Footer slot="footer" />
-</Layout>
+<Layout title="Giới thiệu - Công Cụ Tra Cứu">
+	<div class="max-w-3xl mx-auto prose prose-blue prose-slate">
+		<h1>Giới thiệu về chúng tôi</h1>
+		<p>Công cụ tra cứu dòng tu là một dự án phi lợi nhuận nhằm cung cấp một nền tảng dễ dàng và thuận tiện để tìm kiếm thông tin về các dòng tu, tu hội, tu đoàn và các tổ chức Công giáo tại Việt Nam.</p>
+
+		<h2 id="donate">Đóng góp và Ủng hộ</h2>
+		<p>Dự án này được duy trì bằng nỗ lực của cộng đồng. Bạn có thể ủng hộ chúng tôi qua:</p>
+		<ul>
+			<li><strong>Đóng góp nội dung:</strong> Tham gia bổ sung, cập nhật thông tin về các dòng tu.</li>
+			<li><strong>Tài trợ:</strong> Hỗ trợ chi phí máy chủ và phát triển dự án.</li>
+		</ul>
+
+		<h2>Giấy phép</h2>
+		<p>Vui lòng xem thông tin giấy phép mã nguồn và nội dung dưới đây:</p>
+		<div class="bg-slate-100 p-4 rounded-lg text-sm overflow-x-auto whitespace-pre-wrap font-mono">
+			{licenseContent}
+		</div>
+	</div>
 </Layout>

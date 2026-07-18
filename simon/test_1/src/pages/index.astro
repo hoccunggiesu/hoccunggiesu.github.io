@@ -1,18 +1,46 @@
 ---
 import Layout from '../layouts/Layout.astro';
-import Header from '../components/layouts/Header.astro';
-import Footer from '../components/layouts/Footer.astro';
 ---
 
-<Layout title="Trang chủ - Học Cùng Giêsu">
-  <Header slot="header" />
-  
+<Layout title="Trang chủ - Công Cụ Tra Cứu">
+	<div class="max-w-4xl mx-auto space-y-12">
+		<section class="text-center space-y-6 py-12">
+			<h1 class="text-4xl md:text-5xl font-extrabold text-blue-700">Công Cụ Tra Cứu Dòng Tu</h1>
+			<p class="text-xl text-slate-600 max-w-2xl mx-auto">Nền tảng tra cứu thông tin về các dòng tu, tu hội, tu đoàn và các tổ chức Công giáo tại Việt Nam.</p>
+			<div class="flex justify-center gap-4 mt-8">
+				<a href="/search" class="bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3 px-8 rounded-lg shadow-md transition-colors">Bắt đầu tra cứu</a>
+				<a href="/about" class="bg-white hover:bg-slate-50 text-blue-600 font-semibold py-3 px-8 rounded-lg border border-blue-200 shadow-sm transition-colors">Tìm hiểu thêm</a>
+			</div>
+		</section>
 
-  <h1>Chào mừng đến với Học Cùng Giêsu</h1>
-  <p>Đây là trang chủ.</p>
+		<section class="grid md:grid-cols-3 gap-8">
+			<div class="bg-white p-6 rounded-xl shadow-sm border border-slate-100">
+				<div class="w-12 h-12 bg-blue-100 text-blue-600 rounded-lg flex items-center justify-center mb-4">
+					<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
+				</div>
+				<h3 class="text-xl font-bold mb-2">Tra cứu dễ dàng</h3>
+				<p class="text-slate-600">Tìm kiếm nhanh chóng các dòng tu, tu đoàn theo tên hoặc từ khóa liên quan.</p>
+			</div>
+			<div class="bg-white p-6 rounded-xl shadow-sm border border-slate-100">
+				<div class="w-12 h-12 bg-blue-100 text-blue-600 rounded-lg flex items-center justify-center mb-4">
+					<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6"/><path d="M16 13H8"/><path d="M16 17H8"/><path d="M10 9H8"/></svg>
+				</div>
+				<h3 class="text-xl font-bold mb-2">Thông tin chi tiết</h3>
+				<p class="text-slate-600">Cung cấp thông tin tổng quan và chi tiết về linh đạo, sứ mạng của từng dòng tu.</p>
+			</div>
+			<div class="bg-white p-6 rounded-xl shadow-sm border border-slate-100">
+				<div class="w-12 h-12 bg-blue-100 text-blue-600 rounded-lg flex items-center justify-center mb-4">
+					<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"/></svg>
+				</div>
+				<h3 class="text-xl font-bold mb-2">Đóng góp</h3>
+				<p class="text-slate-600">Dự án mã nguồn mở, hoan nghênh sự đóng góp dữ liệu và hỗ trợ từ cộng đồng.</p>
+			</div>
+		</section>
 
-  <Footer slot="footer" />
-
-  <!-- Phần nội dung chính được đặt tự do -->
-
+		<section class="bg-blue-50 p-8 rounded-2xl">
+			<h2 class="text-2xl font-bold mb-4 text-blue-900">Ủng hộ và Đóng góp</h2>
+			<p class="text-slate-700 mb-4">Dự án này được duy trì nhờ sự đóng góp của cộng đồng. Nếu bạn thấy công cụ hữu ích, xin vui lòng xem xét việc đóng góp để giúp chúng tôi duy trì máy chủ và phát triển thêm các tính năng mới.</p>
+			<a href="/about#donate" class="inline-block bg-blue-600 hover:bg-blue-700 text-white font-medium py-2 px-6 rounded shadow transition-colors">Ủng hộ dự án</a>
+		</section>
+	</div>
 </Layout>
