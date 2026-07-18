@@ -272,7 +272,7 @@ const initialSearchData = entities.map(entity => {
       currentData = initialSearchData.filter(item => {
         // Text Search
         if (query) {
-            const searchableText = `${item.name} ${item.category} ${item.searchContent} ${item.minimalContent}`.toLowerCase();
+            const searchableText = `${item.name} ${item.fullName} ${item.category} ${item.searchContent} ${item.minimalContent}`.toLowerCase();
             if (!searchableText.includes(query)) return false;
         }
 
