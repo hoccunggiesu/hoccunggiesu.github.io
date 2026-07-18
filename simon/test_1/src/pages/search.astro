@@ -16,109 +16,12 @@ const initialSearchData = entities.map(entity => {
 ---
 
 <Layout title="Tra cứu - Công Cụ Tra Cứu">
-	<div class="max-w-7xl mx-auto flex flex-col md:flex-row gap-8 relative" x-data="searchComponent()">
-
-        <!-- Filter Sidebar -->
-        <aside class="w-full md:w-1/4 shrink-0">
-            <div class="bg-white p-5 rounded-xl shadow-sm border border-slate-200 sticky top-4">
-                <div class="flex items-center justify-between mb-4">
-                    <h2 class="font-bold text-lg text-slate-800 flex items-center gap-2">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="22 3 2 3 10 12.46 10 19 14 21 14 12.46 22 3"/></svg>
-                        Bộ lọc
-                    </h2>
-                    <button id="resetFiltersBtn" class="text-sm text-blue-600 hover:text-blue-800 transition-colors">Xóa lọc</button>
-                </div>
-
-                <form id="filterForm" class="space-y-6">
-                    <!-- Loại đời sống -->
-                    <div class="space-y-2">
-                        <label class="font-semibold text-slate-700 text-sm block">Loại đời sống thánh hiến</label>
-                        <select id="filterType" class="w-full rounded-md border border-slate-300 p-2 text-sm focus:ring-2 focus:ring-blue-500 focus:outline-none">
-                            <option value="">Tất cả</option>
-                            <option value="dong-tu">Dòng tu</option>
-                            <option value="dong-chiem-niem">Dòng chiêm niệm</option>
-                            <option value="tu-trieu">Tu triều</option>
-                            <option value="tu-hoi-doi">Tu hội đời</option>
-                            <option value="tu-doan-tong-do">Tu đoàn tông đồ</option>
-                            <option value="hiep-hoi-thanh-hien">Hiệp hội thánh hiến</option>
-                        </select>
-                    </div>
-
-                    <!-- Giới tính -->
-                    <div class="space-y-2">
-                        <label class="font-semibold text-slate-700 text-sm block">Giới tính</label>
-                        <div class="flex gap-4">
-                            <label class="flex items-center gap-2 text-sm cursor-pointer">
-                                <input type="radio" name="filterGender" value="" checked class="text-blue-600 focus:ring-blue-500"> Tất cả
-                            </label>
-                            <label class="flex items-center gap-2 text-sm cursor-pointer">
-                                <input type="radio" name="filterGender" value="nam" class="text-blue-600 focus:ring-blue-500"> Nam
-                            </label>
-                            <label class="flex items-center gap-2 text-sm cursor-pointer">
-                                <input type="radio" name="filterGender" value="nu" class="text-blue-600 focus:ring-blue-500"> Nữ
-                            </label>
-                        </div>
-                    </div>
-
-                    <!-- Vị trí địa lý -->
-                    <div class="space-y-2">
-                        <label class="font-semibold text-slate-700 text-sm block">Vị trí địa lý (Miền)</label>
-                        <div class="space-y-1">
-                            <label class="flex items-center gap-2 text-sm cursor-pointer">
-                                <input type="checkbox" name="filterRegion" value="bac" class="rounded text-blue-600 focus:ring-blue-500"> Miền Bắc
-                            </label>
-                            <label class="flex items-center gap-2 text-sm cursor-pointer">
-                                <input type="checkbox" name="filterRegion" value="trung" class="rounded text-blue-600 focus:ring-blue-500"> Miền Trung
-                            </label>
-                            <label class="flex items-center gap-2 text-sm cursor-pointer">
-                                <input type="checkbox" name="filterRegion" value="nam" class="rounded text-blue-600 focus:ring-blue-500"> Miền Nam
-                            </label>
-                        </div>
-                    </div>
-
-                    <!-- Độ tuổi -->
-                    <div class="space-y-2">
-                        <label class="font-semibold text-slate-700 text-sm block">Độ tuổi dự tu (trong khoảng)</label>
-                        <div class="flex items-center gap-2">
-                            <input type="number" id="filterAgeMin" placeholder="Tối thiểu" min="10" max="60" class="w-full rounded-md border border-slate-300 p-2 text-sm focus:ring-2 focus:ring-blue-500 focus:outline-none">
-                            <span class="text-slate-400">-</span>
-                            <input type="number" id="filterAgeMax" placeholder="Tối đa" min="10" max="60" class="w-full rounded-md border border-slate-300 p-2 text-sm focus:ring-2 focus:ring-blue-500 focus:outline-none">
-                        </div>
-                    </div>
-
-                    <!-- Học vấn -->
-                    <div class="space-y-2">
-                        <label class="font-semibold text-slate-700 text-sm block">Học vấn tối thiểu</label>
-                        <select id="filterEducation" class="w-full rounded-md border border-slate-300 p-2 text-sm focus:ring-2 focus:ring-blue-500 focus:outline-none">
-                            <option value="">Tất cả</option>
-                            <option value="tieuhoc">Tiểu học</option>
-                            <option value="trungcap">Trung cấp / Cấp 2</option>
-                            <option value="thpt">THPT / Cấp 3</option>
-                            <option value="caodang">Cao Đẳng</option>
-                            <option value="daihoc">Đại Học</option>
-                            <option value="caohoc">Cao Học</option>
-                        </select>
-                    </div>
-
-                    <!-- Cấp bậc -->
-                    <div class="space-y-2">
-                        <label class="font-semibold text-slate-700 text-sm block">Cấp bậc</label>
-                        <select id="filterLevel" class="w-full rounded-md border border-slate-300 p-2 text-sm focus:ring-2 focus:ring-blue-500 focus:outline-none">
-                            <option value="">Tất cả</option>
-                            <option value="dongtu">Dòng tu</option>
-                            <option value="tudoan">Tu đoàn / Tu hội</option>
-                            <option value="chungvien">Chủng viện</option>
-                        </select>
-                    </div>
-                </form>
-            </div>
-        </aside>
-
-		<!-- Main Column: Search & Results -->
-		<div class="w-full md:w-1/2 flex flex-col gap-6">
+	<div class="max-w-6xl mx-auto flex flex-col md:flex-row gap-8 relative" x-data="searchComponent()">
+		<!-- Left / Main Column: Search & Results -->
+		<div class="w-full md:w-2/3 lg:w-3/4 flex flex-col gap-6">
 			<!-- Search Bar -->
 			<div class="bg-white p-4 rounded-xl shadow-sm border border-slate-200 sticky top-4 z-10">
-				<div class="relative flex gap-2">
+				<div class="relative">
 					<div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none text-slate-400">
 						<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
 					</div>
@@ -126,38 +29,34 @@ const initialSearchData = entities.map(entity => {
 						type="text"
 						id="searchInput"
 						class="w-full pl-10 pr-4 py-3 rounded-lg border border-slate-300 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-colors bg-slate-50 text-slate-900"
-						placeholder="Nhập từ khóa và nhấn Enter..."
+						placeholder="Nhập tên dòng tu, viết tắt, hoặc từ khóa (nhấn Enter)..."
 					>
-                    <button id="searchBtn" class="bg-blue-600 hover:bg-blue-700 text-white px-6 rounded-lg font-medium transition-colors shrink-0">Tìm</button>
 				</div>
-                <div class="mt-2 text-sm text-slate-500">
-                    Tìm thấy <span id="resultCount" class="font-bold text-slate-800">0</span> kết quả.
-                </div>
 			</div>
 
 			<!-- Search Results Grid -->
-			<div id="resultsContainer" class="grid grid-cols-1 gap-4">
+			<div id="resultsContainer" class="grid grid-cols-1 sm:grid-cols-2 gap-4">
 				<!-- Results will be injected here via client-side JS -->
 			</div>
 
-            <div id="noResults" class="hidden text-center py-12 text-slate-500 bg-white rounded-xl border border-slate-200">
-                <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="mx-auto mb-4 opacity-50"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
-                <p class="text-lg font-medium text-slate-700">Không tìm thấy kết quả phù hợp.</p>
-                <p class="text-sm mt-1">Hãy thử thay đổi từ khóa hoặc bộ lọc.</p>
-            </div>
+      <div id="noResults" class="hidden text-center py-12 text-slate-500">
+        <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="mx-auto mb-4 opacity-50"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
+        <p class="text-lg">Không tìm thấy kết quả nào phù hợp.</p>
+      </div>
 		</div>
 
 		<!-- Right Column / Pop-up: Minimal Info -->
+		<!-- On Desktop: Sticky sidebar. On Mobile: Fixed full-screen overlay -->
 		<div
       id="minimalSidebar"
-      class="hidden fixed inset-0 z-50 bg-slate-900/50 xl:relative xl:bg-transparent xl:z-auto md:w-1/3 xl:w-1/4 xl:block transition-opacity duration-300 opacity-0 xl:opacity-100"
+      class="hidden fixed inset-0 z-50 bg-slate-900/50 md:relative md:bg-transparent md:z-auto md:w-1/3 lg:w-1/4 md:block transition-opacity duration-300 opacity-0 md:opacity-100"
     >
-      <div class="absolute inset-y-0 right-0 w-full max-w-sm bg-white shadow-2xl xl:shadow-sm xl:rounded-xl xl:border xl:border-slate-200 xl:relative xl:w-full xl:max-w-none h-full flex flex-col transform translate-x-full xl:translate-x-0 transition-transform duration-300" id="minimalSidebarContent">
+      <div class="absolute inset-y-0 right-0 w-full max-w-sm bg-white shadow-2xl md:shadow-sm md:rounded-xl md:border md:border-slate-200 md:relative md:w-full md:max-w-none h-full flex flex-col transform translate-x-full md:translate-x-0 transition-transform duration-300" id="minimalSidebarContent">
 
         <!-- Header -->
-        <div class="p-4 border-b border-slate-100 flex justify-between items-center bg-slate-50 xl:rounded-t-xl shrink-0">
+        <div class="p-4 border-b border-slate-100 flex justify-between items-center bg-slate-50 md:rounded-t-xl shrink-0">
           <h3 class="font-bold text-slate-800">Thông tin tóm tắt</h3>
-          <button id="closeSidebarBtn" class="p-2 text-slate-400 hover:text-slate-600 xl:hidden rounded-full hover:bg-slate-200">
+          <button id="closeSidebarBtn" class="p-2 text-slate-400 hover:text-slate-600 md:hidden rounded-full hover:bg-slate-200">
             <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg>
           </button>
         </div>
@@ -166,14 +65,14 @@ const initialSearchData = entities.map(entity => {
         <div class="p-5 overflow-y-auto flex-grow" id="minimalContentArea">
           <div class="text-center text-slate-400 py-12 flex flex-col items-center justify-center h-full">
              <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="mb-4 opacity-30"><rect width="18" height="18" x="3" y="3" rx="2" ry="2"/><line x1="3" x2="21" y1="9" y2="9"/><line x1="9" x2="9" y1="21" y2="9"/></svg>
-            <p>Chọn một dòng tu để xem thông tin.</p>
+            <p>Chọn một dòng tu để xem thông tin tóm tắt.</p>
           </div>
         </div>
 
         <!-- Footer / Action Area -->
-        <div class="p-4 border-t border-slate-100 bg-white xl:rounded-b-xl shrink-0 hidden" id="minimalFooter">
+        <div class="p-4 border-t border-slate-100 bg-white md:rounded-b-xl shrink-0 hidden" id="minimalFooter">
           <a id="readMoreBtn" href="#" class="block w-full py-2 px-4 bg-blue-600 hover:bg-blue-700 text-white text-center rounded-lg font-medium transition-colors">
-            Tìm hiểu chi tiết
+            Tìm hiểu thêm
           </a>
         </div>
       </div>
@@ -182,15 +81,11 @@ const initialSearchData = entities.map(entity => {
 </Layout>
 
 <script is:inline define:vars={{ initialSearchData }}>
+  // Client-side Logic
   document.addEventListener('DOMContentLoaded', () => {
-    // DOM Elements
     const searchInput = document.getElementById('searchInput');
-    const searchBtn = document.getElementById('searchBtn');
     const resultsContainer = document.getElementById('resultsContainer');
     const noResults = document.getElementById('noResults');
-    const resultCount = document.getElementById('resultCount');
-
-    // Sidebar elements
     const minimalSidebar = document.getElementById('minimalSidebar');
     const minimalSidebarContent = document.getElementById('minimalSidebarContent');
     const closeSidebarBtn = document.getElementById('closeSidebarBtn');
@@ -198,20 +93,10 @@ const initialSearchData = entities.map(entity => {
     const minimalFooter = document.getElementById('minimalFooter');
     const readMoreBtn = document.getElementById('readMoreBtn');
 
-    // Filter elements
-    const filterForm = document.getElementById('filterForm');
-    const resetFiltersBtn = document.getElementById('resetFiltersBtn');
-    const filterType = document.getElementById('filterType');
-    const filterAgeMin = document.getElementById('filterAgeMin');
-    const filterAgeMax = document.getElementById('filterAgeMax');
-    const filterEducation = document.getElementById('filterEducation');
-    const filterLevel = document.getElementById('filterLevel');
-
     let currentData = initialSearchData;
 
     function renderResults(data) {
       resultsContainer.innerHTML = '';
-      resultCount.textContent = data.length;
 
       if (data.length === 0) {
         noResults.classList.remove('hidden');
@@ -222,9 +107,13 @@ const initialSearchData = entities.map(entity => {
           const card = document.createElement('div');
           card.className = 'bg-white rounded-xl shadow-sm border border-slate-200 p-5 cursor-pointer hover:border-blue-400 hover:shadow-md transition-all group overflow-hidden prose prose-sm max-w-none';
 
+          // Modify links inside the markdown to not trigger navigation,
+          // but clicking the card should open the minimal view.
           const htmlContent = item.searchHtml.replace(/<a /g, '<a onclick="event.preventDefault();" ');
+
           card.innerHTML = htmlContent;
 
+          // Apply some custom styling to the markdown content inside the card
           const headings = card.querySelectorAll('h1, h2, h3');
           headings.forEach(h => {
              h.classList.add('text-blue-800', 'mt-0', 'mb-2', 'text-lg', 'group-hover:text-blue-600', 'transition-colors');
@@ -236,74 +125,34 @@ const initialSearchData = entities.map(entity => {
       }
     }
 
-    function getSelectedRadioValue(name) {
-        const selected = document.querySelector(`input[name="${name}"]:checked`);
-        return selected ? selected.value : '';
-    }
+    function handleSearch(e) {
+      if (e.key === 'Enter') {
+        const query = searchInput.value.toLowerCase().trim();
 
-    function getSelectedCheckboxValues(name) {
-        const checkboxes = document.querySelectorAll(`input[name="${name}"]:checked`);
-        return Array.from(checkboxes).map(cb => cb.value);
-    }
-
-    function applyFilters() {
-      const query = searchInput.value.toLowerCase().trim();
-      const type = filterType.value;
-      const gender = getSelectedRadioValue('filterGender');
-      const regions = getSelectedCheckboxValues('filterRegion');
-      const ageMin = parseInt(filterAgeMin.value, 10);
-      const ageMax = parseInt(filterAgeMax.value, 10);
-      const education = filterEducation.value;
-      const level = filterLevel.value;
-
-      currentData = initialSearchData.filter(item => {
-        // Text Search
-        if (query) {
+        if (!query) {
+          currentData = initialSearchData;
+        } else {
+          currentData = initialSearchData.filter(item => {
             const searchableText = `${item.name} ${item.category} ${item.searchContent} ${item.minimalContent}`.toLowerCase();
-            if (!searchableText.includes(query)) return false;
+            return searchableText.includes(query);
+          });
         }
 
-        // Filters
-        if (type && item.typeOfLife !== type) return false;
-
-        if (gender && item.gender !== gender && item.gender !== 'cahai') return false;
-
-        if (regions.length > 0) {
-            // Include if item has AT LEAST ONE of the selected regions
-            const hasRegion = regions.some(r => item.regions.includes(r));
-            if (!hasRegion) return false;
-        }
-
-        if (education && item.education !== education) return false;
-        if (level && item.level !== level) return false;
-
-        // Age filtering (overlap check)
-        if (!isNaN(ageMin) || !isNaN(ageMax)) {
-            const itemMin = item.ageMin !== null ? item.ageMin : 0;
-            const itemMax = item.ageMax !== null ? item.ageMax : 100;
-
-            const filterMin = !isNaN(ageMin) ? ageMin : 0;
-            const filterMax = !isNaN(ageMax) ? ageMax : 100;
-
-            // Check if the required age range overlaps with the item's age range
-            if (filterMax < itemMin || filterMin > itemMax) {
-                return false;
-            }
-        }
-
-        return true;
-      });
-
-      renderResults(currentData);
+        renderResults(currentData);
+      }
     }
 
     function openMinimalView(item) {
+      // Set content
       minimalContentArea.innerHTML = `<div class="prose prose-sm prose-blue max-w-none">${item.minimalHtml}</div>`;
+
+      // Update link
       readMoreBtn.href = `/detail/${item.path}`;
       minimalFooter.classList.remove('hidden');
 
-      // Show Sidebar
+      // Show Sidebar (Mobile handling)
       minimalSidebar.classList.remove('hidden');
+      // small delay to allow display:block to apply before animating opacity/transform
       setTimeout(() => {
         minimalSidebar.classList.replace('opacity-0', 'opacity-100');
         minimalSidebarContent.classList.replace('translate-x-full', 'translate-x-0');
@@ -313,29 +162,18 @@ const initialSearchData = entities.map(entity => {
     function closeMinimalView() {
       minimalSidebar.classList.replace('opacity-100', 'opacity-0');
       minimalSidebarContent.classList.replace('translate-x-0', 'translate-x-full');
+
+      // Wait for transition to finish before hiding
       setTimeout(() => {
         minimalSidebar.classList.add('hidden');
       }, 300);
     }
 
     // Event Listeners
-    searchInput.addEventListener('keydown', (e) => {
-        if (e.key === 'Enter') applyFilters();
-    });
-    searchBtn.addEventListener('click', applyFilters);
-
-    // Listen to all filter changes
-    filterForm.addEventListener('change', applyFilters);
-    filterAgeMin.addEventListener('input', applyFilters);
-    filterAgeMax.addEventListener('input', applyFilters);
-
-    resetFiltersBtn.addEventListener('click', () => {
-        filterForm.reset();
-        searchInput.value = '';
-        applyFilters();
-    });
-
+    searchInput.addEventListener('keydown', handleSearch);
     closeSidebarBtn.addEventListener('click', closeMinimalView);
+
+    // Close sidebar when clicking outside on mobile
     minimalSidebar.addEventListener('click', (e) => {
       if (e.target === minimalSidebar) {
         closeMinimalView();
@@ -348,10 +186,11 @@ const initialSearchData = entities.map(entity => {
 </script>
 
 <style is:global>
+  /* Extra styling for markdown content inside cards to make them look uniform */
   #resultsContainer .prose p {
     margin-top: 0.5em;
     margin-bottom: 0.5em;
-    color: #475569;
+    color: #475569; /* slate-600 */
   }
   #resultsContainer .prose ul {
     margin-top: 0.5em;
