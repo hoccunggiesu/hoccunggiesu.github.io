@@ -38,20 +38,52 @@ const initialSearchData = entities.map(entity => {
                     </button>
                     <button id="searchBtn" class="bg-blue-600 hover:bg-blue-700 text-white px-6 rounded-lg font-medium transition-colors shrink-0 hidden sm:block">Tìm</button>
 				</div>
-                <div class="mt-2 text-sm text-slate-500">
+			</div>
+
+            <!-- Popular Suggestions (Visible when empty) -->
+            <div id="suggestionsContainer" class="bg-white p-6 rounded-xl shadow-sm border border-slate-200 mt-2">
+                <div class="mb-6">
+                    <h3 class="text-lg font-bold text-slate-800 flex items-center gap-2 mb-3">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-orange-500"><path d="M12 2v20"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
+                        Tìm kiếm phổ biến
+                    </h3>
+                    <div class="flex flex-wrap gap-2">
+                        <button class="suggestion-btn bg-slate-100 hover:bg-blue-100 text-slate-700 hover:text-blue-700 px-4 py-2 rounded-full text-sm transition-colors border border-slate-200 hover:border-blue-300">Don Bosco</button>
+                        <button class="suggestion-btn bg-slate-100 hover:bg-blue-100 text-slate-700 hover:text-blue-700 px-4 py-2 rounded-full text-sm transition-colors border border-slate-200 hover:border-blue-300">Đa Minh</button>
+                        <button class="suggestion-btn bg-slate-100 hover:bg-blue-100 text-slate-700 hover:text-blue-700 px-4 py-2 rounded-full text-sm transition-colors border border-slate-200 hover:border-blue-300">Phan Sinh</button>
+                        <button class="suggestion-btn bg-slate-100 hover:bg-blue-100 text-slate-700 hover:text-blue-700 px-4 py-2 rounded-full text-sm transition-colors border border-slate-200 hover:border-blue-300">Dòng Tên</button>
+                    </div>
+                </div>
+
+                <div>
+                    <h3 class="text-lg font-bold text-slate-800 flex items-center gap-2 mb-3">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-pink-500"><path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"/></svg>
+                        Được quan tâm nhiều nhất
+                    </h3>
+                    <div class="flex flex-wrap gap-2">
+                        <button class="suggestion-btn bg-slate-100 hover:bg-pink-100 text-slate-700 hover:text-pink-700 px-4 py-2 rounded-full text-sm transition-colors border border-slate-200 hover:border-pink-300">Dòng Mến Thánh Giá</button>
+                        <button class="suggestion-btn bg-slate-100 hover:bg-pink-100 text-slate-700 hover:text-pink-700 px-4 py-2 rounded-full text-sm transition-colors border border-slate-200 hover:border-pink-300">Đại chủng viện</button>
+                        <button class="suggestion-btn bg-slate-100 hover:bg-pink-100 text-slate-700 hover:text-pink-700 px-4 py-2 rounded-full text-sm transition-colors border border-slate-200 hover:border-pink-300">Tu hội đời</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Search Results Wrapper (Hidden initially) -->
+            <div id="resultsWrapper" class="hidden flex-col gap-4">
+                <div class="text-sm text-slate-500 px-2">
                     Tìm thấy <span id="resultCount" class="font-bold text-slate-800">0</span> kết quả.
                 </div>
-			</div>
 
-			<!-- Search Results Grid -->
-			<div id="resultsContainer" class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-				<!-- Results will be injected here via client-side JS -->
-			</div>
+                <!-- Search Results Grid -->
+                <div id="resultsContainer" class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                    <!-- Results will be injected here via client-side JS -->
+                </div>
 
-            <div id="noResults" class="hidden text-center py-12 text-slate-500 bg-white rounded-xl border border-slate-200">
-                <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="mx-auto mb-4 opacity-50"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
-                <p class="text-lg font-medium text-slate-700">Không tìm thấy kết quả phù hợp.</p>
-                <p class="text-sm mt-1">Hãy thử thay đổi từ khóa hoặc bộ lọc.</p>
+                <div id="noResults" class="hidden text-center py-12 text-slate-500 bg-white rounded-xl border border-slate-200">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="mx-auto mb-4 opacity-50"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
+                    <p class="text-lg font-medium text-slate-700">Không tìm thấy kết quả phù hợp.</p>
+                    <p class="text-sm mt-1">Hãy thử thay đổi từ khóa hoặc bộ lọc.</p>
+                </div>
             </div>
 		</div>
 
@@ -157,7 +189,7 @@ const initialSearchData = entities.map(entity => {
             </div>
 
             <div class="p-4 border-t border-slate-100 bg-white shrink-0">
-                <button id="applyFilterBtnDesktop" class="w-full bg-blue-600 hover:bg-blue-700 text-white py-2 px-4 rounded-lg font-medium transition-colors">Xem kết quả</button>
+                <button id="applyFilterBtnDesktop" class="w-full bg-blue-600 hover:bg-blue-700 text-white py-2 px-4 rounded-lg font-medium transition-colors">Áp dụng bộ lọc</button>
             </div>
         </div>
 
@@ -193,9 +225,12 @@ const initialSearchData = entities.map(entity => {
     // DOM Elements
     const searchInput = document.getElementById('searchInput');
     const searchBtn = document.getElementById('searchBtn');
+    const suggestionsContainer = document.getElementById('suggestionsContainer');
+    const resultsWrapper = document.getElementById('resultsWrapper');
     const resultsContainer = document.getElementById('resultsContainer');
     const noResults = document.getElementById('noResults');
     const resultCount = document.getElementById('resultCount');
+    const suggestionBtns = document.querySelectorAll('.suggestion-btn');
 
     // Filter Sidebar Elements
     const filterOverlay = document.getElementById('filterOverlay');
@@ -221,6 +256,19 @@ const initialSearchData = entities.map(entity => {
     const filterLevel = document.getElementById('filterLevel');
 
     let currentData = initialSearchData;
+
+    function hasActiveFilters() {
+        const query = searchInput.value.trim();
+        const type = filterType.value;
+        const gender = getSelectedRadioValue('filterGender');
+        const regions = getSelectedCheckboxValues('filterRegion');
+        const ageMin = filterAgeMin.value;
+        const ageMax = filterAgeMax.value;
+        const education = filterEducation.value;
+        const level = filterLevel.value;
+
+        return query || type || gender || regions.length > 0 || ageMin || ageMax || education || level;
+    }
 
     function renderResults(data) {
       resultsContainer.innerHTML = '';
@@ -260,6 +308,18 @@ const initialSearchData = entities.map(entity => {
     }
 
     function applyFilters() {
+      // Toggle Views based on active state
+      if (hasActiveFilters()) {
+          suggestionsContainer.classList.add('hidden');
+          resultsWrapper.classList.remove('hidden');
+          resultsWrapper.classList.add('flex');
+      } else {
+          suggestionsContainer.classList.remove('hidden');
+          resultsWrapper.classList.add('hidden');
+          resultsWrapper.classList.remove('flex');
+          return; // No need to filter if we are showing suggestions
+      }
+
       const query = searchInput.value.toLowerCase().trim();
       const type = filterType.value;
       const gender = getSelectedRadioValue('filterGender');
@@ -272,7 +332,7 @@ const initialSearchData = entities.map(entity => {
       currentData = initialSearchData.filter(item => {
         // Text Search
         if (query) {
-            const searchableText = `${item.name} ${item.category} ${item.searchContent} ${item.minimalContent}`.toLowerCase();
+            const searchableText = `${item.fullName} ${item.name} ${item.category} ${item.searchContent} ${item.minimalContent}`.toLowerCase();
             if (!searchableText.includes(query)) return false;
         }
 
@@ -361,8 +421,19 @@ const initialSearchData = entities.map(entity => {
     if (searchBtn) {
         searchBtn.addEventListener('click', applyFilters);
     }
+
+    // Listen for real-time input to toggle views
+    searchInput.addEventListener('input', applyFilters);
     searchInput.addEventListener('keydown', (e) => {
         if (e.key === 'Enter') applyFilters();
+    });
+
+    // Suggestions Logic
+    suggestionBtns.forEach(btn => {
+        btn.addEventListener('click', () => {
+            searchInput.value = btn.textContent;
+            applyFilters();
+        });
     });
 
     filterForm.addEventListener('change', applyFilters);
@@ -375,8 +446,8 @@ const initialSearchData = entities.map(entity => {
         applyFilters();
     });
 
-    // Initial render
-    renderResults(currentData);
+    // Initial evaluation (show suggestions if empty)
+    applyFilters();
   });
 </script>
 
