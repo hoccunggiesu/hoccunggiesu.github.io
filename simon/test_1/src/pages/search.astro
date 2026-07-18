@@ -21,17 +21,24 @@ const initialSearchData = entities.map(entity => {
 		<!-- Main Column: Search & Results -->
 		<div class="w-full flex flex-col gap-6">
 			<!-- Search Bar -->
-			<div class="bg-white p-4 rounded-xl shadow-sm border border-slate-200 sticky top-4 z-20">
+			<div class="bg-white p-4 rounded-xl shadow-sm border border-slate-200 sticky top-4 z-30">
 				<div class="relative flex gap-2">
 					<div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none text-slate-400">
 						<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
 					</div>
-					<input
-						type="text"
-						id="searchInput"
-						class="w-full pl-10 pr-4 py-3 rounded-lg border border-slate-300 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-colors bg-slate-50 text-slate-900"
-						placeholder="Nhập từ khóa và nhấn Enter..."
-					>
+					<div class="relative w-full">
+                        <input
+                            type="text"
+                            id="searchInput"
+                            autocomplete="off"
+                            class="w-full pl-10 pr-4 py-3 rounded-lg border border-slate-300 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-colors bg-slate-50 text-slate-900"
+                            placeholder="Nhập từ khóa và nhấn Enter..."
+                        >
+                        <!-- Autocomplete Dropdown -->
+                        <div id="autocompleteDropdown" class="absolute left-0 right-0 mt-1 bg-white border border-slate-200 rounded-lg shadow-lg z-40 hidden max-h-60 overflow-y-auto">
+                            <!-- Items injected via JS -->
+                        </div>
+                    </div>
                     <button id="toggleFilterBtn" class="bg-slate-100 hover:bg-slate-200 text-slate-700 px-4 rounded-lg font-medium transition-colors shrink-0 flex items-center gap-2 border border-slate-300" title="Hiện/Ẩn Bộ Lọc">
                         <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="22 3 2 3 10 12.46 10 19 14 21 14 12.46 22 3"/></svg>
                         <span class="hidden sm:inline">Bộ lọc</span>
@@ -40,8 +47,8 @@ const initialSearchData = entities.map(entity => {
 				</div>
 			</div>
 
-            <!-- Popular Suggestions (Visible when empty) -->
-            <div id="suggestionsContainer" class="bg-white p-6 rounded-xl shadow-sm border border-slate-200 mt-2">
+            <!-- Popular Suggestions (Visible only when search input is empty) -->
+            <div id="suggestionsContainer" class="bg-white p-6 rounded-xl shadow-sm border border-slate-200 mt-2 transition-all">
                 <div class="mb-6">
                     <h3 class="text-lg font-bold text-slate-800 flex items-center gap-2 mb-3">
                         <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-orange-500"><path d="M12 2v20"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
@@ -68,10 +75,10 @@ const initialSearchData = entities.map(entity => {
                 </div>
             </div>
 
-            <!-- Search Results Wrapper (Hidden initially) -->
-            <div id="resultsWrapper" class="hidden flex-col gap-4">
-                <div class="text-sm text-slate-500 px-2">
-                    Tìm thấy <span id="resultCount" class="font-bold text-slate-800">0</span> kết quả.
+            <!-- Search Results Wrapper (Always visible unless no results) -->
+            <div id="resultsWrapper" class="flex flex-col gap-4 mt-2">
+                <div class="text-sm text-slate-500 px-2 flex justify-between items-center">
+                    <span>Tìm thấy <span id="resultCount" class="font-bold text-slate-800">0</span> kết quả.</span>
                 </div>
 
                 <!-- Search Results Grid -->
@@ -224,9 +231,9 @@ const initialSearchData = entities.map(entity => {
   document.addEventListener('DOMContentLoaded', () => {
     // DOM Elements
     const searchInput = document.getElementById('searchInput');
+    const autocompleteDropdown = document.getElementById('autocompleteDropdown');
     const searchBtn = document.getElementById('searchBtn');
     const suggestionsContainer = document.getElementById('suggestionsContainer');
-    const resultsWrapper = document.getElementById('resultsWrapper');
     const resultsContainer = document.getElementById('resultsContainer');
     const noResults = document.getElementById('noResults');
     const resultCount = document.getElementById('resultCount');
@@ -256,19 +263,6 @@ const initialSearchData = entities.map(entity => {
     const filterLevel = document.getElementById('filterLevel');
 
     let currentData = initialSearchData;
-
-    function hasActiveFilters() {
-        const query = searchInput.value.trim();
-        const type = filterType.value;
-        const gender = getSelectedRadioValue('filterGender');
-        const regions = getSelectedCheckboxValues('filterRegion');
-        const ageMin = filterAgeMin.value;
-        const ageMax = filterAgeMax.value;
-        const education = filterEducation.value;
-        const level = filterLevel.value;
-
-        return query || type || gender || regions.length > 0 || ageMin || ageMax || education || level;
-    }
 
     function renderResults(data) {
       resultsContainer.innerHTML = '';
@@ -308,18 +302,6 @@ const initialSearchData = entities.map(entity => {
     }
 
     function applyFilters() {
-      // Toggle Views based on active state
-      if (hasActiveFilters()) {
-          suggestionsContainer.classList.add('hidden');
-          resultsWrapper.classList.remove('hidden');
-          resultsWrapper.classList.add('flex');
-      } else {
-          suggestionsContainer.classList.remove('hidden');
-          resultsWrapper.classList.add('hidden');
-          resultsWrapper.classList.remove('flex');
-          return; // No need to filter if we are showing suggestions
-      }
-
       const query = searchInput.value.toLowerCase().trim();
       const type = filterType.value;
       const gender = getSelectedRadioValue('filterGender');
@@ -328,6 +310,13 @@ const initialSearchData = entities.map(entity => {
       const ageMax = parseInt(filterAgeMax.value, 10);
       const education = filterEducation.value;
       const level = filterLevel.value;
+
+      // Hide Popular Suggestions ONLY if user types text
+      if (query.length > 0) {
+          suggestionsContainer.classList.add('hidden');
+      } else {
+          suggestionsContainer.classList.remove('hidden');
+      }
 
       currentData = initialSearchData.filter(item => {
         // Text Search
@@ -367,6 +356,50 @@ const initialSearchData = entities.map(entity => {
 
       renderResults(currentData);
     }
+
+    // --- Autocomplete Logic ---
+    function handleAutocomplete() {
+        const query = searchInput.value.toLowerCase().trim();
+        autocompleteDropdown.innerHTML = '';
+
+        if (!query) {
+            autocompleteDropdown.classList.add('hidden');
+            return;
+        }
+
+        // Find matches based on name or fullName
+        const matches = initialSearchData.filter(item => {
+             const searchStr = `${item.fullName} ${item.name}`.toLowerCase();
+             return searchStr.includes(query);
+        }).slice(0, 5); // Limit to 5 suggestions
+
+        if (matches.length > 0) {
+            matches.forEach(match => {
+                const div = document.createElement('div');
+                div.className = 'px-4 py-2 hover:bg-slate-50 cursor-pointer text-slate-700 flex items-center gap-2 border-b border-slate-100 last:border-0';
+                div.innerHTML = `
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-slate-400 shrink-0"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
+                    <span class="truncate">${match.fullName || match.name}</span>
+                `;
+                div.addEventListener('click', () => {
+                    searchInput.value = match.fullName || match.name;
+                    autocompleteDropdown.classList.add('hidden');
+                    applyFilters();
+                });
+                autocompleteDropdown.appendChild(div);
+            });
+            autocompleteDropdown.classList.remove('hidden');
+        } else {
+            autocompleteDropdown.classList.add('hidden');
+        }
+    }
+
+    // Close autocomplete when clicking outside
+    document.addEventListener('click', (e) => {
+        if (!searchInput.contains(e.target) && !autocompleteDropdown.contains(e.target)) {
+            autocompleteDropdown.classList.add('hidden');
+        }
+    });
 
     // --- Filter UI Toggle Logic ---
     function openFilterSidebar() {
@@ -419,16 +452,26 @@ const initialSearchData = entities.map(entity => {
 
     // --- Event Listeners for Filter actions ---
     if (searchBtn) {
-        searchBtn.addEventListener('click', applyFilters);
+        searchBtn.addEventListener('click', () => {
+            autocompleteDropdown.classList.add('hidden');
+            applyFilters();
+        });
     }
 
-    // Listen for real-time input to toggle views
-    searchInput.addEventListener('input', applyFilters);
-    searchInput.addEventListener('keydown', (e) => {
-        if (e.key === 'Enter') applyFilters();
+    // Listen for real-time input to toggle views and show autocomplete
+    searchInput.addEventListener('input', () => {
+        handleAutocomplete();
+        applyFilters();
     });
+    searchInput.addEventListener('keydown', (e) => {
+        if (e.key === 'Enter') {
+            autocompleteDropdown.classList.add('hidden');
+            applyFilters();
+        }
+    });
+    searchInput.addEventListener('focus', handleAutocomplete);
 
-    // Suggestions Logic
+    // Suggestions Logic (Popular tags)
     suggestionBtns.forEach(btn => {
         btn.addEventListener('click', () => {
             searchInput.value = btn.textContent;
@@ -446,7 +489,7 @@ const initialSearchData = entities.map(entity => {
         applyFilters();
     });
 
-    // Initial evaluation (show suggestions if empty)
+    // Initial evaluation (show suggestions if empty, but always render default results grid)
     applyFilters();
   });
 </script>
