@@ -1,0 +1,44 @@
+[
+  {
+    "id": "dong-tu-Don Bosco-Nam (SDB)",
+    "name": "Nam (SDB)",
+    "fullName": "TÊN ĐẦY ĐỦ",
+    "category": "Don Bosco",
+    "path": "dong-tu/Don Bosco/Nam (SDB)",
+    "typeOfLife": "dong-tu",
+    "gender": "nam",
+    "regions": [
+      "bac",
+      "trung",
+      "nam"
+    ],
+    "ageMin": null,
+    "ageMax": null,
+    "education": "",
+    "level": "chungvien",
+    "searchPath": "dong-tu/Don Bosco/Nam (SDB)/search.md",
+    "minimalPath": "dong-tu/Don Bosco/Nam (SDB)/minimal.md",
+    "fullPath": "dong-tu/Don Bosco/Nam (SDB)/full.md"
+  },
+  {
+    "id": "dong-tu-Don Bosco-Nữ (FMA)",
+    "name": "Nữ (FMA)",
+    "fullName": "TÊN ĐẦY ĐỦ",
+    "category": "Don Bosco",
+    "path": "dong-tu/Don Bosco/Nữ (FMA)",
+    "typeOfLife": "dong-tu",
+    "gender": "nu",
+    "regions": [
+      "bac",
+      "trung",
+      "nam"
+    ],
+    "ageMin": null,
+    "ageMax": null,
+    "education": "",
+    "level": "chungvien",
+    "searchPath": "dong-tu/Don Bosco/Nữ (FMA)/search.md",
+    "minimalPath": "dong-tu/Don Bosco/Nữ (FMA)/minimal.md",
+    "fullPath": "dong-tu/Don Bosco/Nữ (FMA)/full.md"
+  }
+]
