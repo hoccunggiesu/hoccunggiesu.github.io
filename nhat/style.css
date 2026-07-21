@@ -1,0 +1,136 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+/* ================= HEADER ================= */
+header {
+    background: linear-gradient(to bottom, #dcf3ff, #f0f9ff); /* Nền xanh lam gradient nhạt */
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 80px;
+}
+
+.img-thanh-gia, .img-logo {
+    width: 120px;
+    height: 120px;
+    object-fit: cover;
+}
+.img-thanh-gia {
+    border-radius: 50%; 
+    border: 3px solid white;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+}
+
+.img-logo {
+    border-radius: 50%; 
+    border: 3px solid white;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+}
+
+/* HIỆU ỨNG CHỮ */
+.title {
+    font-family: 'Arial Black', Impact, sans-serif; /* Phông chữ nét dày */
+    font-size: 55px;
+    color: #0074b0; /* Chữ màu xanh dương */
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    /* Tạo viền trắng xung quanh chữ */
+    -webkit-text-stroke: 4px white; 
+    paint-order: stroke fill;
+    /* Tạo bóng mờ phía sau */
+    text-shadow: 3px 3px 6px rgba(0,0,0,0.2); 
+}
+
+nav {
+    background-color: #2e61be; /* Màu cam đặc trưng của web Công giáo */
+    box-shadow: 0 2px 5px rgba(0,0,0,0.15);
+}
+
+.main-menu {
+    display: flex;
+    list-style: none;
+    justify-content: center; /* Đưa menu ra giữa */
+}
+
+.main-menu > li {
+    position: relative;
+}
+
+/* Mục menu chính */
+.main-menu > li > a {
+    display: block;
+    padding: 18px 25px;
+    color: #ffffff; /* Chữ trắng */
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 15px;
+    text-transform: uppercase; /* Bắt buộc viết hoa toàn bộ */
+    transition: background 0.3s;
+}
+
+.main-menu > li > a:hover, .main-menu > li.active > a {
+    background-color: #00b2d1; /* Màu cam đậm hơn khi di chuột/click */
+}
+
+/* ================= MENU CON (Sổ xuống) ================= */
+.sub-menu, .sub-menu-2 {
+    display: none; /* Mặc định ẩn */
+    position: absolute;
+    background-color: #ffffff; /* Nền menu con màu trắng */
+    min-width: 250px;
+    list-style: none;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+    z-index: 100;
+}
+
+/* Vị trí Menu cấp 1 */
+.sub-menu {
+    top: 100%;
+    left: 0;
+    border-top: 3px solid #2e61be; /* Vạch cam phía trên */
+}
+
+/* Vị trí Menu cấp 2 (Sổ ngang) */
+.sub-menu-2 {
+    top: 0;
+    left: 100%; /* Đẩy sang phải */
+}
+
+/* Các liên kết bên trong menu con */
+.sub-menu a, .sub-menu-2 a {
+    display: block;
+    padding: 12px 20px;
+    color: #333333; /* Chữ màu xám đen */
+    text-decoration: none;
+    font-size: 14px;
+    border-bottom: 1px solid #f0f0f0; /* Dòng kẻ mờ ngăn cách */
+    text-transform: uppercase;
+    display: flex;
+    justify-content: space-between; /* Đẩy mũi tên sang mép phải */
+    align-items: center;
+}
+
+.sub-menu a:hover, .sub-menu-2 a:hover {
+    background-color: #fff4e6; /* Đổi nền sang xanh nhạt khi di chuột */
+    color: #2e61be; /* Chữ đổi màu */
+}
+
+/* Xử lý hiển thị khi được thêm class 'active' bằng JS */
+.dropdown.active > .sub-menu {
+    display: block;
+}
+
+.dropdown-submenu.active > .sub-menu-2 {
+    display: block;
+}
+
+/* Mũi tên */
+.arrow {
+    font-size: 10px;
+    margin-left: 8px;
+    color: inherit;
+}
