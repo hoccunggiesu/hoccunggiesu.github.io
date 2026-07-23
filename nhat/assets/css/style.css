@@ -44,3 +44,42 @@ header {
     /* Tạo bóng mờ phía sau */
     text-shadow: 3px 3px 6px rgba(0,0,0,0.2); 
 }
+
+.page-banner{
+
+    height:230px;
+
+    background-image:url("../images/banner-phu-cuong.jpg");
+
+    background-size:cover;
+
+    background-position:center;
+
+    position:relative;
+
+}
+
+.banner-overlay{
+
+    width:20%;
+
+    height:100%;
+
+    background:rgba(0,0,0,.35);
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+}
+
+.banner-overlay h1{
+
+    color:white;
+    font-size:30px;
+    letter-spacing:5px;
+    text-transform:uppercase;
+
+}

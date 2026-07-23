@@ -1,0 +1,9 @@
+.banner-phucuong{
+    height:220px;
+    background:url("../gp-phu-cuong/images/banner-phu-cuong.jpg") center center;
+    background-size:cover;
+    background-repeat:no-repeat;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+}
